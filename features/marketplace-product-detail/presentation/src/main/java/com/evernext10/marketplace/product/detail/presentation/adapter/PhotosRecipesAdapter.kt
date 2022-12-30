@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.evernext10.core.R
-import com.evernext10.core.domain.model.product.Picture
+import com.evernext10.core.domain.model.recipes.Picture
 import com.evernext10.core.ext.bindImageUrl
 import com.evernext10.marketplace.product.detail.presentation.databinding.ItemPhotosProductBinding
 
-class PhotosProductAdapter : ListAdapter<Picture, PhotosProductAdapter.PhotosViewHolder>(ProductDiffUtil()) {
+class PhotosRecipesAdapter : ListAdapter<Picture, PhotosRecipesAdapter.PhotosViewHolder>(ProductDiffUtil()) {
 
     companion object {
         private class ProductDiffUtil : DiffUtil.ItemCallback<Picture>() {

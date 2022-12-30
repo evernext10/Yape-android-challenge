@@ -6,23 +6,22 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.evernext10.core.R
-import com.evernext10.core.domain.model.product.Product
+import com.evernext10.core.domain.model.recipes.Recipes
 import com.evernext10.core.ext.bindImageUrl
-import com.evernext10.core.ext.toCreditQuotes
 import com.evernext10.core.ext.toFormattedNumber
 import com.evernext10.marketplace.product.list.presentation.databinding.ItemProductBinding
 
-class ProductListAdapter(
-    private val onClick: (Product) -> Unit
-) : ListAdapter<Product, ProductListAdapter.ProductViewHolder>(ProductDiffUtil()) {
+class RecipesListAdapter(
+    private val onClick: (Recipes) -> Unit
+) : ListAdapter<Recipes, RecipesListAdapter.ProductViewHolder>(ProductDiffUtil()) {
 
     companion object {
-        private class ProductDiffUtil : DiffUtil.ItemCallback<Product>() {
-            override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
+        private class ProductDiffUtil : DiffUtil.ItemCallback<Recipes>() {
+            override fun areItemsTheSame(oldItem: Recipes, newItem: Recipes): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: Product, newItem: Product): Boolean {
+            override fun areContentsTheSame(oldItem: Recipes, newItem: Recipes): Boolean {
                 return oldItem == newItem
             }
         }
@@ -43,16 +42,17 @@ class ProductListAdapter(
         holder.bind(getItem(position))
     }
 
-    inner class ProductViewHolder(private val viewItem: ItemProductBinding, val onClick: (Product) -> Unit) :
+    inner class ProductViewHolder(private val viewItem: ItemProductBinding, val onClick: (Recipes) -> Unit) :
         RecyclerView.ViewHolder(viewItem.root) {
-        fun bind(product: Product) {
+        fun bind(product: Recipes) {
             product.let {
                 with(viewItem) {
-                    productName.text = it.title
-                    productPrice.text = it.price?.toFormattedNumber()
-                    productInstallments.text = it.price?.toCreditQuotes()
+                    productName.text = it.name
+                    averageCost.text = it.average_cost?.toFormattedNumber()
+                    averageTime.text = "${it.average_time} min"
+                    productType.text = it.type
                     productImage.bindImageUrl(
-                        url = it.thumbnail,
+                        url = it.image,
                         placeholder = R.drawable.ic_baseline_rotate_left_24,
                         errorPlaceholder = R.drawable.ic_baseline_error_24
                     )

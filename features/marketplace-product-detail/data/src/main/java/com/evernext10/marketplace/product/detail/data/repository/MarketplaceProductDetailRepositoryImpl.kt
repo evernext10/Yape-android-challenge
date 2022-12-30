@@ -2,7 +2,7 @@ package com.evernext10.marketplace.product.detail.data.repository
 
 import android.content.Context
 import com.evernext10.core.app.isNetworkAvailable
-import com.evernext10.core.domain.model.product.response.MarketplaceProductDetailResponse
+import com.evernext10.core.domain.model.recipes.response.MarketplaceRecipesDetailResponse
 import com.evernext10.core.domain.network.Either
 import com.evernext10.core.domain.network.Failure
 import com.evernext10.core.domain.network.request
@@ -16,7 +16,7 @@ class MarketplaceProductDetailRepositoryImpl(
 
     override suspend fun productDetail(
         id: String?
-    ): Either<Failure, MarketplaceProductDetailResponse> {
+    ): Either<Failure, MarketplaceRecipesDetailResponse> {
         return when (context.isNetworkAvailable()) {
             true -> {
                 request(

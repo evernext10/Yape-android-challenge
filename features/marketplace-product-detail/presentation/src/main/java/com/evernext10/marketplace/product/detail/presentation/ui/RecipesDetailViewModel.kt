@@ -6,22 +6,22 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.evernext10.core.domain.model.product.response.MarketplaceProductDetailResponse
-import com.evernext10.core.domain.model.product.state.StateProductDetail
+import com.evernext10.core.domain.model.recipes.response.MarketplaceRecipesDetailResponse
+import com.evernext10.core.domain.model.recipes.state.StateRecipesDetail
 import com.evernext10.core.domain.network.Failure
 import com.evernext10.marketplace.product.detail.domain.usecase.GetDetailProductByIdUseCase
 
-class ProductDetailViewModel(
+class RecipesDetailViewModel(
     private val useCase: GetDetailProductByIdUseCase,
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val _productDetailState: MutableLiveData<StateProductDetail> = MutableLiveData()
-    val productDetailState: LiveData<StateProductDetail> = _productDetailState
+    private val _productDetailState: MutableLiveData<StateRecipesDetail> = MutableLiveData()
+    val productDetailState: LiveData<StateRecipesDetail> = _productDetailState
 
     fun getDataFromStateHandled(productId: String) {
         if (savedStateHandle.contains(KEY_STATE)) {
-            _productDetailState.postValue(StateProductDetail.Success(savedStateHandle[KEY_STATE]!!))
+            _productDetailState.postValue(StateRecipesDetail.Success(savedStateHandle[KEY_STATE]!!))
         } else {
             getMarketplaceProductDetail(productId)
         }
@@ -39,14 +39,14 @@ class ProductDetailViewModel(
         }
     }
 
-    private fun handleSuccess(response: MarketplaceProductDetailResponse) {
+    private fun handleSuccess(response: MarketplaceRecipesDetailResponse) {
         savedStateHandle[KEY_STATE] = response.body
-        _productDetailState.postValue(StateProductDetail.Success(response.body))
+        _productDetailState.postValue(StateRecipesDetail.Success(response.body))
     }
 
     private fun handleFailure(failure: Failure) {
         Log.i("Error", failure.toString())
-        _productDetailState.postValue(StateProductDetail.Error)
+        _productDetailState.postValue(StateRecipesDetail.Error)
     }
 
     companion object {

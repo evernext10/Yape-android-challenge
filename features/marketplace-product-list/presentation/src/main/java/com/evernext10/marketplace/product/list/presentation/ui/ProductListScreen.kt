@@ -8,14 +8,14 @@ import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.evernext10.core.domain.model.product.Product
-import com.evernext10.core.domain.model.product.state.StateProductList
+import com.evernext10.core.domain.model.recipes.Recipes
+import com.evernext10.core.domain.model.recipes.state.StateRecipesList
 import com.evernext10.core.ext.launchAndRepeatWithViewLifecycle
 import com.evernext10.core.ext.onQueryTextChanged
 import com.evernext10.core.ext.showAlertDialogErrorApi
 import com.evernext10.core.ext.visible
 import com.evernext10.marketplace.product.list.presentation.R
-import com.evernext10.marketplace.product.list.presentation.adapter.ProductListAdapter
+import com.evernext10.marketplace.product.list.presentation.adapter.RecipesListAdapter
 import com.evernext10.marketplace.product.list.presentation.databinding.FragmentProductListScreenBinding
 import com.evernext10.navigation.Destination
 import com.evernext10.navigation.navigateToDestination
@@ -28,13 +28,13 @@ class ProductListScreen : Fragment() {
     private var _binding: FragmentProductListScreenBinding? = null
     private val binding get() = _binding!!
 
-    private val adapterProductList: ProductListAdapter by lazy {
-        ProductListAdapter(onClick = {
+    private val adapterProductList: RecipesListAdapter by lazy {
+        RecipesListAdapter(onClick = {
             navigateToDetail(it)
         })
     }
 
-    private fun navigateToDetail(product: Product) {
+    private fun navigateToDetail(product: Recipes) {
         navigateToDestination(
             Destination.ProductDetail(product.id!!)
         )
@@ -82,6 +82,8 @@ class ProductListScreen : Fragment() {
                 productListViewModel.postQueryWord(it)
             }
         }
+
+        productListViewModel.getMarketplaceProductList("")
     }
 
     private fun observerState() = with(binding) {
@@ -94,23 +96,24 @@ class ProductListScreen : Fragment() {
                     textViewNoData.visible(false)
                     textViewNoData.text = getString(R.string.error_no_available_data)
                 }
-                productListViewModel.getMarketplaceProductList(it)
+                // productListViewModel.getMarketplaceProductList(it)
             }
             productListViewModel.productListState.observe(viewLifecycleOwner) {
                 Log.i("ResponseStatus", it.toString())
                 when (it) {
-                    is StateProductList.Loading -> {
+                    is StateRecipesList.Loading -> {
                         binding.progressBottom.visible(true)
                     }
-                    is StateProductList.Success -> {
+                    is StateRecipesList.Success -> {
                         binding.progressBottom.visible(false)
+                        binding.textViewNoData.visible(false)
                         adapterProductList.submitList(it.products)
                     }
-                    is StateProductList.Unauthorized -> {
+                    is StateRecipesList.Unauthorized -> {
                         binding.progressBottom.visible(false)
                         Log.i("Response", "Unauthorized")
                     }
-                    is StateProductList.Error -> {
+                    is StateRecipesList.Error -> {
                         showAlertDialogErrorApi()
                     }
                     else -> {

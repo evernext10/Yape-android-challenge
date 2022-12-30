@@ -70,7 +70,7 @@ fun Fragment.showAlertDialogErrorApi(controller: NavController? = null) {
         }.show()
 }
 
-fun Long.toFormattedNumber() = "$ ${String.format("%,d", this)}"
+fun Int.toFormattedNumber() = "$ ${String.format("%,d", this)}"
 
 fun Long.toCreditQuotes() = "en 36x $ ${String.format("%,d", this/36)}"
 

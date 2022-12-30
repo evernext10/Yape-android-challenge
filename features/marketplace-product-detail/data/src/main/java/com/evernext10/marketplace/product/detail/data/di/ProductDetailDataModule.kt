@@ -1,6 +1,6 @@
 package com.evernext10.marketplace.product.detail.data.di
 
-import com.evernext10.core.domain.model.product.response.MarketplaceProductDetailResponse
+import com.evernext10.core.domain.model.recipes.response.MarketplaceRecipesDetailResponse
 import com.evernext10.marketplace.product.detail.data.remote.network.ProductDetailService
 import com.evernext10.marketplace.product.detail.data.repository.MarketplaceProductDetailRepositoryImpl
 import com.evernext10.marketplace.product.detail.domain.repository.MarketplaceProductDetailRepository
@@ -23,5 +23,5 @@ class ApiServiceModule(retrofit: Retrofit) : ProductDetailService {
 
     override fun getProductById(
         id: String?
-    ): Call<List<MarketplaceProductDetailResponse>> = api.getProductById(id)
+    ): Call<List<MarketplaceRecipesDetailResponse>> = api.getProductById(id)
 }

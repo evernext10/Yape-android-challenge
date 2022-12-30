@@ -2,30 +2,33 @@ package com.evernext10.marketplace.product.detail.presentation.ui
 
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
-import com.evernext10.core.domain.model.product.Product
-import com.evernext10.core.domain.model.product.state.StateProductDetail
+import com.evernext10.core.domain.model.recipes.Recipes
+import com.evernext10.core.domain.model.recipes.state.StateRecipesDetail
 import com.evernext10.core.ext.launchAndRepeatWithViewLifecycle
 import com.evernext10.core.ext.showAlertDialogErrorApi
-import com.evernext10.core.ext.toFormattedNumber
 import com.evernext10.core.ext.visible
 import com.evernext10.marketplace.product.detail.presentation.R
-import com.evernext10.marketplace.product.detail.presentation.adapter.PhotosProductAdapter
+import com.evernext10.marketplace.product.detail.presentation.adapter.PhotosRecipesAdapter
 import com.evernext10.marketplace.product.detail.presentation.databinding.FragmentProductDetailScreenBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ProductDetailScreen : Fragment() {
+class RecipesDetailScreen : Fragment() {
 
     private var _binding: FragmentProductDetailScreenBinding? = null
     private val binding get() = _binding!!
 
-    private val detailProductDetailViewModel by viewModel<ProductDetailViewModel>()
+    private val detailProductDetailViewModel by viewModel<RecipesDetailViewModel>()
 
-    private val photosViewPager: PhotosProductAdapter by lazy {
-        PhotosProductAdapter()
+    private val photosViewPager: PhotosRecipesAdapter by lazy {
+        PhotosRecipesAdapter()
     }
 
     override fun onCreateView(
@@ -57,18 +60,18 @@ class ProductDetailScreen : Fragment() {
             detailProductDetailViewModel.productDetailState.observe(viewLifecycleOwner) {
                 Log.i("ResponseStatus", it.toString())
                 when (it) {
-                    is StateProductDetail.Loading -> {
+                    is StateRecipesDetail.Loading -> {
                         binding.progress.visible(true)
                     }
-                    is StateProductDetail.Success -> {
+                    is StateRecipesDetail.Success -> {
                         binding.progress.visible(false)
                         initViews(it.product)
                     }
-                    is StateProductDetail.Unauthorized -> {
+                    is StateRecipesDetail.Unauthorized -> {
                         binding.progress.visible(true)
                         Log.i("Response", "Unauthorized")
                     }
-                    is StateProductDetail.Error -> {
+                    is StateRecipesDetail.Error -> {
                         binding.progress.visible(false)
                         showAlertDialogErrorApi()
                     }
@@ -81,11 +84,11 @@ class ProductDetailScreen : Fragment() {
         }
     }
 
-    private fun initViews(product: Product) = with(binding) {
+    private fun initViews(product: Recipes) = with(binding) {
         photosViewPager.submitList(product.pictures)
-        productSold.text = "${product.condition} | ${product.soldQuantity} vendidos"
-        productTitle.text = product.title
-        productPrice.text = product.price?.toFormattedNumber()
+        productSold.text = ""
+        productTitle.text = product.name
+        productPrice.text = ""
         viewPager2.adapter = photosViewPager
 
         toolbar.apply {

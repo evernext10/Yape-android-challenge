@@ -1,4 +1,4 @@
-package com.evernext10.core.domain.model.product.response
+package com.evernext10.core.domain.model.recipes.response
 
 data class Paging(
     val total: Int = 0,

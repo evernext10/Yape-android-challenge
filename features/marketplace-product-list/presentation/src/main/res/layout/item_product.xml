@@ -52,7 +52,7 @@
                 tools:text="Carro de niños" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/product_price"
+                android:id="@+id/average_cost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left"
@@ -66,7 +66,7 @@
                 tools:text="$15000" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/product_installments"
+                android:id="@+id/average_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left"
@@ -75,11 +75,11 @@
                 android:textColor="@android:color/darker_gray"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/product_price"
+                app:layout_constraintTop_toBottomOf="@+id/average_cost"
                 tools:text="36 x 4560" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/product_offer"
+                android:id="@+id/product_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left"
@@ -93,8 +93,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 android:background="@color/color_green_background"
-                app:layout_constraintTop_toBottomOf="@+id/product_installments"
-                android:text="Llega gratis mañana" />
+                app:layout_constraintTop_toBottomOf="@+id/average_time"
+                />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View

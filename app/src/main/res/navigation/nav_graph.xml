@@ -12,7 +12,7 @@
 
     <fragment
         android:id="@+id/marketplaceProductDetail"
-        android:name="com.evernext10.marketplace.product.detail.presentation.ui.ProductDetailScreen"
+        android:name="com.evernext10.marketplace.product.detail.presentation.ui.RecipesDetailScreen"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_product_detail_screen"/>
 

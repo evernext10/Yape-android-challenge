@@ -1,4 +1,4 @@
-package com.evernext10.core.domain.model.product
+package com.evernext10.core.domain.model.recipes
 
 import android.os.Parcelable
 import com.squareup.moshi.Json
@@ -7,9 +7,9 @@ import kotlinx.android.parcel.Parcelize
 
 @JsonClass(generateAdapter = true)
 @Parcelize
-data class Picture(
-    @Json(name = "id")
-    val id: String? = null,
-    @Json(name = "url")
-    val url: String? = null
+data class Location(
+    @Json(name = "latitude")
+    val latitude: Double? = null,
+    @Json(name = "longitude")
+    val longitude: Double? = null
 ) : Parcelable
