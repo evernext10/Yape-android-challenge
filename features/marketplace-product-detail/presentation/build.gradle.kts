@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -59,6 +60,8 @@ dependencies {
     implementation(UI.lifecycleLivedataKtx)
 
     implementation(Glide.glide)
+    implementation("com.google.android.gms:play-services-maps:18.1.0")
+    implementation("androidx.appcompat:appcompat:1.5.1")
     kapt(Glide.glideCompiler)
     implementation(Glide.glideOkhttp)
 

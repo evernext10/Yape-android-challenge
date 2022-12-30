@@ -5,7 +5,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.evernext10.core.domain.model.recipes.response.MarketplaceRecipesListResponse
 import com.evernext10.core.domain.network.Either
 import com.evernext10.core.domain.network.request
-import com.evernext10.marketplace.product.list.data.remote.network.ProductListService
+import com.evernext10.marketplace.product.list.data.remote.network.RecipesListService
 import com.evernext10.marketplace.product.list.data.remote.validProductList
 import com.google.common.truth.Truth
 import io.mockk.mockk
@@ -25,7 +25,7 @@ class MarketplaceProductListRepositoryImplTest {
     private lateinit var repository: MarketplaceRecipesListRepositoryImpl
     private lateinit var mockWebServer: MockWebServer
     private lateinit var okHttpClient: OkHttpClient
-    private lateinit var api: ProductListService
+    private lateinit var api: RecipesListService
 
     @Before
     fun setup() {
@@ -42,7 +42,7 @@ class MarketplaceProductListRepositoryImplTest {
             .client(okHttpClient)
             .baseUrl("https://api.mercadolibre.com/sites/")
             .build()
-            .create(ProductListService::class.java)
+            .create(RecipesListService::class.java)
 
         repository = MarketplaceRecipesListRepositoryImpl(
             api = mockk(relaxed = true),
@@ -63,7 +63,7 @@ class MarketplaceProductListRepositoryImplTest {
         )
 
         val result = request(
-            api.getProductsBySearch("TXL", 1),
+            api.getRecipesBySearch(),
             { it },
             MarketplaceRecipesListResponse()
         )
@@ -80,7 +80,7 @@ class MarketplaceProductListRepositoryImplTest {
         )
 
         val result = request(
-            api.getProductsBySearch("TXL", 1),
+            api.getRecipesBySearch(),
             { it },
             MarketplaceRecipesListResponse()
         )

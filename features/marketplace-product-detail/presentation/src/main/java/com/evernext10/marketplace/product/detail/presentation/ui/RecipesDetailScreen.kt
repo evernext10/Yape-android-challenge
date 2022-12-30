@@ -14,10 +14,13 @@ import com.evernext10.core.domain.model.recipes.Recipes
 import com.evernext10.core.domain.model.recipes.state.StateRecipesDetail
 import com.evernext10.core.ext.launchAndRepeatWithViewLifecycle
 import com.evernext10.core.ext.showAlertDialogErrorApi
+import com.evernext10.core.ext.toFormattedNumber
 import com.evernext10.core.ext.visible
 import com.evernext10.marketplace.product.detail.presentation.R
 import com.evernext10.marketplace.product.detail.presentation.adapter.PhotosRecipesAdapter
 import com.evernext10.marketplace.product.detail.presentation.databinding.FragmentProductDetailScreenBinding
+import com.evernext10.navigation.Destination
+import com.evernext10.navigation.navigateToDestination
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RecipesDetailScreen : Fragment() {
@@ -29,6 +32,10 @@ class RecipesDetailScreen : Fragment() {
 
     private val photosViewPager: PhotosRecipesAdapter by lazy {
         PhotosRecipesAdapter()
+    }
+
+    private val itemRecipes: Recipes by lazy {
+        requireArguments()["recipes"] as Recipes
     }
 
     override fun onCreateView(
@@ -47,8 +54,8 @@ class RecipesDetailScreen : Fragment() {
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
         Log.i("STATE_INSTANCE", "Restored")
-        detailProductDetailViewModel.getDataFromStateHandled(requireArguments()["recipes"] as Recipes)
         observerState()
+        initViews(itemRecipes)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -65,7 +72,6 @@ class RecipesDetailScreen : Fragment() {
                     }
                     is StateRecipesDetail.Success -> {
                         binding.progress.visible(false)
-                        initViews(it.product)
                     }
                     is StateRecipesDetail.Unauthorized -> {
                         binding.progress.visible(true)
@@ -86,10 +92,12 @@ class RecipesDetailScreen : Fragment() {
 
     private fun initViews(product: Recipes) = with(binding) {
         photosViewPager.submitList(product.pictures)
-        productSold.text = ""
+        productSold.text = "${product.average_time} min"
         productTitle.text = product.name
-        productPrice.text = ""
+        productPrice.text = product.average_cost?.toFormattedNumber()
+        productOffer.text = product.type
         viewPager2.adapter = photosViewPager
+        progress.visible(false)
 
         toolbar.apply {
             inflateMenu(R.menu.product_item_menu)
@@ -108,6 +116,12 @@ class RecipesDetailScreen : Fragment() {
                 tvImagesCount.text = "${position.plus(1)}/${photosViewPager.itemCount}"
             }
         })
+
+        recipesLocationButton.setOnClickListener {
+            navigateToDestination(
+                Destination.RecipesLocation(itemRecipes.location!!)
+            )
+        }
     }
 
     override fun onDestroyView() {

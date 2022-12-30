@@ -110,7 +110,20 @@
         android:layout_margin="@dimen/margin_small"
         app:layout_constraintTop_toBottomOf="@+id/product_price"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="@string/product_detail_item_offer" />
+        />
+
+    <Button
+        android:id="@+id/recipes_location_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_blue_background"
+        android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="parent"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:layout_margin="@dimen/margin_small"
+        app:layout_constraintTop_toBottomOf="@+id/product_offer"
+        android:text="Ir al mapa" />
 
     <ProgressBar
         android:id="@+id/progress"
