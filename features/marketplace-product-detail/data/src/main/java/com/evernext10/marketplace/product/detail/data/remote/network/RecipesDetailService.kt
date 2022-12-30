@@ -5,7 +5,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface ProductDetailService {
+interface RecipesDetailService {
     @GET("/items?")
     fun getProductById(
         @Query("ids") ids: String?

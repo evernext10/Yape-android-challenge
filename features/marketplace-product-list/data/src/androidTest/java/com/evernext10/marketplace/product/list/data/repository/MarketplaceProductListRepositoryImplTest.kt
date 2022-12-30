@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit
 
 class MarketplaceProductListRepositoryImplTest {
 
-    private lateinit var repository: MarketplaceProductListRepositoryImpl
+    private lateinit var repository: MarketplaceRecipesListRepositoryImpl
     private lateinit var mockWebServer: MockWebServer
     private lateinit var okHttpClient: OkHttpClient
     private lateinit var api: ProductListService
@@ -44,7 +44,7 @@ class MarketplaceProductListRepositoryImplTest {
             .build()
             .create(ProductListService::class.java)
 
-        repository = MarketplaceProductListRepositoryImpl(
+        repository = MarketplaceRecipesListRepositoryImpl(
             api = mockk(relaxed = true),
             context = InstrumentationRegistry.getInstrumentation().targetContext
         )

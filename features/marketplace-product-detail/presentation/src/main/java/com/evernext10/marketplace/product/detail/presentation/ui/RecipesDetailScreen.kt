@@ -47,7 +47,7 @@ class RecipesDetailScreen : Fragment() {
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
         Log.i("STATE_INSTANCE", "Restored")
-        detailProductDetailViewModel.getDataFromStateHandled(requireArguments()["productId"] as String)
+        detailProductDetailViewModel.getDataFromStateHandled(requireArguments()["recipes"] as Recipes)
         observerState()
     }
 
@@ -57,7 +57,7 @@ class RecipesDetailScreen : Fragment() {
 
     private fun observerState() {
         launchAndRepeatWithViewLifecycle {
-            detailProductDetailViewModel.productDetailState.observe(viewLifecycleOwner) {
+            detailProductDetailViewModel.recipesDetailState.observe(viewLifecycleOwner) {
                 Log.i("ResponseStatus", it.toString())
                 when (it) {
                     is StateRecipesDetail.Loading -> {

@@ -2,12 +2,12 @@ package com.evernext10.mercadolibre.app
 
 import android.app.Application
 import com.evernext10.core.data.di.coreModule
-import com.evernext10.marketplace.product.detail.data.di.productDetailDataModule
-import com.evernext10.marketplace.product.detail.domain.di.productDetailDomainModule
-import com.evernext10.marketplace.product.detail.presentation.di.productDetailPresentationModule
-import com.evernext10.marketplace.product.list.data.di.productListDataModule
-import com.evernext10.marketplace.product.list.domain.di.productListDomainModule
-import com.evernext10.marketplace.product.list.presentation.di.productListPresentationModule
+import com.evernext10.marketplace.product.detail.data.di.recipesDetailDataModule
+import com.evernext10.marketplace.product.detail.domain.di.recipesDetailDomainModule
+import com.evernext10.marketplace.product.detail.presentation.di.recipesDetailPresentationModule
+import com.evernext10.marketplace.product.list.data.di.recipesListDataModule
+import com.evernext10.marketplace.product.list.domain.di.recipesListDomainModule
+import com.evernext10.marketplace.product.list.presentation.di.recipesListPresentationModule
 import com.evernext10.navigation.di.navigationModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -22,13 +22,13 @@ class MercadoLibreApp : Application() {
             modules(
                 listOf(
                     coreModule,
-                    productListDataModule,
-                    productListDomainModule,
-                    productListPresentationModule,
+                    recipesListDataModule,
+                    recipesListDomainModule,
+                    recipesListPresentationModule,
                     navigationModule,
-                    productDetailDataModule,
-                    productDetailDomainModule,
-                    productDetailPresentationModule
+                    recipesDetailDataModule,
+                    recipesDetailDomainModule,
+                    recipesDetailPresentationModule
                 )
             )
         }

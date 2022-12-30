@@ -4,7 +4,7 @@ import com.evernext10.marketplace.product.detail.presentation.ui.RecipesDetailVi
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-val productDetailPresentationModule = module {
+val recipesDetailPresentationModule = module {
     viewModel {
         RecipesDetailViewModel(
             get(),

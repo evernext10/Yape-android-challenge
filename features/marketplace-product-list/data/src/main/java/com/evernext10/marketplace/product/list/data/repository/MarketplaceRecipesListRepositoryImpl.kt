@@ -9,7 +9,7 @@ import com.evernext10.core.domain.network.request
 import com.evernext10.marketplace.product.list.data.di.ApiServiceModule
 import com.evernext10.marketplace.product.list.domain.repository.MarketplaceRecipesListRepository
 
-class MarketplaceProductListRepositoryImpl(
+class MarketplaceRecipesListRepositoryImpl(
     private val api: ApiServiceModule,
     private val context: Context
 ) : MarketplaceRecipesListRepository {

@@ -23,7 +23,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProductListScreen : Fragment() {
 
-    private val productListViewModel by viewModel<ProductListScreenViewModel>()
+    private val productListViewModel by viewModel<RecipesListScreenViewModel>()
 
     private var _binding: FragmentProductListScreenBinding? = null
     private val binding get() = _binding!!
@@ -36,7 +36,7 @@ class ProductListScreen : Fragment() {
 
     private fun navigateToDetail(product: Recipes) {
         navigateToDestination(
-            Destination.ProductDetail(product.id!!)
+            Destination.RecipesDetail(product)
         )
     }
 
@@ -98,7 +98,7 @@ class ProductListScreen : Fragment() {
                 }
                 // productListViewModel.getMarketplaceProductList(it)
             }
-            productListViewModel.productListState.observe(viewLifecycleOwner) {
+            productListViewModel.recipesListState.observe(viewLifecycleOwner) {
                 Log.i("ResponseStatus", it.toString())
                 when (it) {
                     is StateRecipesList.Loading -> {
