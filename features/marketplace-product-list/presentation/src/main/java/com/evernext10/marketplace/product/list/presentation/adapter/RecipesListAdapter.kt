@@ -2,6 +2,8 @@ package com.evernext10.marketplace.product.list.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +15,9 @@ import com.evernext10.marketplace.product.list.presentation.databinding.ItemProd
 
 class RecipesListAdapter(
     private val onClick: (Recipes) -> Unit
-) : ListAdapter<Recipes, RecipesListAdapter.ProductViewHolder>(ProductDiffUtil()) {
+) : ListAdapter<Recipes, RecipesListAdapter.ProductViewHolder>(ProductDiffUtil()), Filterable {
+
+    private var completeItemList : MutableList<Recipes>? = mutableListOf()
 
     companion object {
         private class ProductDiffUtil : DiffUtil.ItemCallback<Recipes>() {
@@ -60,6 +64,34 @@ class RecipesListAdapter(
                         onClick(it)
                     }
                 }
+            }
+        }
+    }
+
+    fun setData(list: List<Recipes>){
+        this.completeItemList = list.toMutableList()
+        submitList(list)
+    }
+    override fun getFilter(): Filter {
+        return object : Filter(){
+            override fun performFiltering(query: CharSequence?): FilterResults {
+                val filteredList = mutableListOf<Recipes>()
+                if (query.isNullOrBlank()) {
+                    completeItemList?.let { filteredList.addAll(it) }
+                } else {
+                    for (item in completeItemList!!) {
+                        if (item.name!!.contains(query, true)) {
+                            filteredList.add(item)
+                        }
+                    }
+                }
+                val results = FilterResults()
+                results.values = filteredList
+                return results
+            }
+
+            override fun publishResults(p0: CharSequence?, filterResults: FilterResults) {
+                submitList(filterResults.values as MutableList<Recipes>)
             }
         }
     }

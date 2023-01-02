@@ -76,13 +76,15 @@ class ProductListScreen : Fragment() {
                 "<font color = #000000>" + resources.getString(R.string.search_bar_title) + "</font>",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
             )
-            query
             onQueryTextChanged {
-                progressBottom.visible(true)
-                productListViewModel.postQueryWord(it)
+                if (it.isEmpty()) {
+                    productListViewModel.getMarketplaceProductList("")
+                } else {
+                    progressBottom.visible(false)
+                    adapterProductList.filter.filter(it)
+                }
             }
         }
-
         productListViewModel.getMarketplaceProductList("")
     }
 
@@ -96,7 +98,6 @@ class ProductListScreen : Fragment() {
                     textViewNoData.visible(false)
                     textViewNoData.text = getString(R.string.error_no_available_data)
                 }
-                // productListViewModel.getMarketplaceProductList(it)
             }
             productListViewModel.recipesListState.observe(viewLifecycleOwner) {
                 Log.i("ResponseStatus", it.toString())
@@ -107,7 +108,7 @@ class ProductListScreen : Fragment() {
                     is StateRecipesList.Success -> {
                         binding.progressBottom.visible(false)
                         binding.textViewNoData.visible(false)
-                        adapterProductList.submitList(it.products)
+                        adapterProductList.setData(it.products)
                     }
                     is StateRecipesList.Unauthorized -> {
                         binding.progressBottom.visible(false)
