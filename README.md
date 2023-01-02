@@ -1,4 +1,4 @@
-# MELI Challenge - Android Clean Architecture with MVVM using Jetpack component
+# YAPE Challenge - Android Clean Architecture with MVVM using Jetpack component
 
 
 ## 💡 What is Clean Architecture?
@@ -9,7 +9,7 @@ It’s essentially a collection of best practice design principles that help you
 
 Clean architecture is a method of software development in which you should be able to identify what a program performs merely by looking at its source code. Robert C. Martin, also known as Uncle Bob, came up with the Clean Architecture concept in the year 2012.
 
-![alt tag](https://github.com/evernext10/Meli-android-challenge/blob/main/resources/clean_architecture_software.jpg)
+![alt tag](https://github.com/evernext10/Yape-android-challenge/blob/main/resources/clean_architecture_software.jpg)
 
 ## 💡 Why Clean Architecture?
 
@@ -27,7 +27,7 @@ Easily Testable
 - **Data:**
   It includes the domain layer. It would implement the interface exposed by domain layer and dispenses data to app
 
-![alt tag](https://github.com/evernext10/Meli-android-challenge/blob/main/resources/clean_arch.png)
+![alt tag](https://github.com/evernext10/Yape-android-challenge/blob/main/resources/clean_arch.png)
 
 ## 💡 Advantages of Using Clean Architecture
 - Easily testable.
@@ -55,7 +55,7 @@ Easily Testable
 
 ## 💡 Project: MELI Challenge
 
-This is a test presentation of Clean Architecture with MVVM in Android to show products from Mercado Libre API.
+This is a test presentation of Clean Architecture with MVVM in Android to show recipes from Mock API.
 
 
 ##  💡 Modules
