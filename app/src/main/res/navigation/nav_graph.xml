@@ -3,24 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/marketplaceProductList">
+    app:startDestination="@id/marketplaceRecipesList">
 
     <fragment
-        android:id="@+id/marketplaceProductList"
+        android:id="@+id/marketplaceRecipesList"
         android:name="com.evernext10.marketplace.product.list.presentation.ui.ProductListScreen"
         android:label="@string/first_fragment_label"/>
 
     <fragment
-        android:id="@+id/marketplaceProductDetail"
+        android:id="@+id/marketplaceRecipesDetail"
         android:name="com.evernext10.marketplace.product.detail.presentation.ui.RecipesDetailScreen"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_product_detail_screen"/>
 
-    <action
-        android:id="@+id/action_to_productList"
-        app:destination="@id/marketplaceProductList" />
+    <fragment
+        android:id="@+id/marketplaceRecipesDetailLocation"
+        android:name="com.evernext10.marketplace.product.detail.presentation.ui.location.RecipesLocationFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_recipes_location"/>
 
     <action
-        android:id="@+id/action_to_productDetail"
-        app:destination="@id/marketplaceProductDetail" />
+        android:id="@+id/action_to_recipesList"
+        app:destination="@id/marketplaceRecipesList" />
+
+    <action
+        android:id="@+id/action_to_recipesDetail"
+        app:destination="@id/marketplaceRecipesDetail" />
+
+    <action
+        android:id="@+id/action_to_recipesDetailLocation"
+        app:destination="@id/marketplaceRecipesDetailLocation" />
 </navigation>

@@ -31,13 +31,16 @@ class MainActivity : AppCompatActivity() {
             val navController = findNavController(R.id.nav_host_fragment_content_main)
             when (destination) {
                 is Destination.RecipesList -> {
-                    navController.navigate(R.id.action_to_productList)
+                    navController.navigate(R.id.action_to_recipesList)
                 }
                 is Destination.RecipesDetail -> {
-                    navController.navigate(R.id.action_to_productDetail, bundleOf("recipes" to destination.recipes))
+                    navController.navigate(R.id.action_to_recipesDetail, bundleOf("recipes" to destination.recipes))
+                }
+                is Destination.RecipesLocation -> {
+                    navController.navigate(R.id.action_to_recipesDetailLocation, bundleOf("location" to destination.location, "recipes_name" to destination.recipeName))
                 }
                 else -> {
-                    navController.navigate(R.id.action_to_productList)
+                    navController.navigate(R.id.action_to_recipesList)
                 }
             }
         }

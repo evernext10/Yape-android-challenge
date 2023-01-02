@@ -16,7 +16,7 @@ sealed class Destination() : Parcelable {
     class RecipesDetail(val recipes: Recipes) : Destination()
 
     @Parcelize
-    class RecipesLocation(val location: Location) : Destination()
+    class RecipesLocation(val location: Location, val recipeName: String) : Destination()
 
     /**
      * Extends this when origin screen must be known.

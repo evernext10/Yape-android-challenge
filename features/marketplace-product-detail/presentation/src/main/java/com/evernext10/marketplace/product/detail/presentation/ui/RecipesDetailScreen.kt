@@ -119,7 +119,7 @@ class RecipesDetailScreen : Fragment() {
 
         recipesLocationButton.setOnClickListener {
             navigateToDestination(
-                Destination.RecipesLocation(itemRecipes.location!!)
+                Destination.RecipesLocation(itemRecipes.location!!, itemRecipes.name!!)
             )
         }
     }
