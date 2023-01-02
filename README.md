@@ -53,7 +53,7 @@ Easily Testable
 - [CI/CD - GitActions](https://proandroiddev.com/android-ci-cd-pipeline-with-github-actions-demystifying-github-actions-83258e76a18f)
 
 
-## 💡 Project: MELI Challenge
+## 💡 Project: YAPE Challenge
 
 This is a test presentation of Clean Architecture with MVVM in Android to show recipes from Mock API.
 
@@ -76,6 +76,13 @@ This is a test presentation of Clean Architecture with MVVM in Android to show r
 - app
 - DSL
 
-# Under devlopement
+# Screenshots
+
+![alt tag](https://github.com/evernext10/Yape-android-challenge/blob/main/resources/screen_list.png)
+
+![alt tag](https://github.com/evernext10/Yape-android-challenge/blob/main/resources/screen_detail.png)
+
+![alt tag](https://github.com/evernext10/Yape-android-challenge/blob/main/resources/screen_location.png)
+
 
 # Thanks for reading! 
